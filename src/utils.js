@@ -6,4 +6,4 @@ export const checkStatus = (response) => {
   throw new Error('Request was either a 404 or 500');
 }
 
-export const json = (response) => response.json()
+export const json = (response) => response.json();
