@@ -6,33 +6,135 @@ class CurrencyConverter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      base: null,
-    }
+      currency1: 'CAD',
+      currency2: 'HKD',
+      result: '',
+      error: '',
+    };
+    this.newCurrency1 = this.newCurrency1.bind(this);
+    this.newCurrency2 = this.newCurrency2.bind(this);
+    this.update = this.update.bind(this);
   }
 
-  componentDidMount () {
-      fetch(``)
-        .then(checkStatus)
-        .then(json)
-        .then((data) => {
-          if (data.Response === 'False') {
-            throw new Error(data.Error);
-          }
 
-          if (data.Response === 'True') {
-            console.log(data);
-            this.setState({ });
-          }
-        })
-        .catch((error) => {
-          this.setState({ error: error.message });
-          console.log(error);
-        })
+  update() {
+    const { currency1, currency2 } = this.state;
+    fetch(`https://alt-exchange-rate.herokuapp.com/latest?base=${currency1}&symbols=${currency2}`)
+    .then(checkStatus)
+    .then(json)
+    .then((data) => {
+      console.log(data.rates[currency2]);
+      //this.setState({ result: data });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+      console.log(error);
+    })
+  }
+
+  newCurrency1(event) {
+    let updateCurrency = () => {
+      return new Promise ((resolve, reject) => {
+        resolve(this.setState({ currency1: event.target.value }));
+      });
     }
+    updateCurrency().then(this.update);
+  }
+
+  newCurrency2(event) {
+    let updateCurrency = () => {
+      return new Promise ((resolve, reject) => {
+        resolve(this.setState({ currency2: event.target.value }));
+      });
+    }
+    updateCurrency().then(this.update);
+  }
+
+
 
   render() {
-
-    return
+    const { currency1, currency2, result } = this.state;
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <select id="currency1" value={currency1} onChange={this.newCurrency1}>
+              <option value="AUD">Australian Dollar</option>
+              <option value="BGN">Bulgarian Lev</option>
+              <option value="BRL">Brazilian Real</option>
+              <option value="CAD">Canadian Dollar</option>
+              <option value="CHF">Swiss Franc</option>
+              <option value="CNY">Chinese Yuan</option>
+              <option value="CZK">Czech Koruna</option>
+              <option value="DKK">Danish Krone</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">British Pound Sterling</option>
+              <option value="HKD">Hong Kong Dollar</option>
+              <option value="HRK">Croatian Kuna</option>
+              <option value="HUF">Hungarian Forint</option>
+              <option value="IDR">Indonesian Rupiah</option>
+              <option value="ILS">Israeli New Shekel</option>
+              <option value="INR">Indian Rupee</option>
+              <option value="ISK">Icelandic Króna</option>
+              <option value="JPY">Japanese Yen</option>
+              <option value="KRW">South Korean Won</option>
+              <option value="MXN">Mexican Peso</option>
+              <option value="MYR">Malaysian Ringgit</option>
+              <option value="NOK">Norwegian Krone</option>
+              <option value="NZD">New Zealand Dollar</option>
+              <option value="PHP">Philippine Peso</option>
+              <option value="PLN">Polish Złoty</option>
+              <option value="RON">Romanian Leu</option>
+              <option value="RUB">Russian Ruble</option>
+              <option value="SEK">Swedish Kronor</option>
+              <option value="SGD">Singapore Dollar</option>
+              <option value="THB">Thai Baht</option>
+              <option value="TRY">Turkish Lira</option>
+              <option value="USD">United States Dollar</option>
+              <option value="ZAR">South African Rand</option>
+            </select>
+            <select id="currency2" value={currency2} onChange={this.newCurrency2}>
+              <option value="AUD">Australian Dollar</option>
+              <option value="BGN">Bulgarian Lev</option>
+              <option value="BRL">Brazilian Real</option>
+              <option value="CAD">Canadian Dollar</option>
+              <option value="CHF">Swiss Franc</option>
+              <option value="CNY">Chinese Yuan</option>
+              <option value="CZK">Czech Koruna</option>
+              <option value="DKK">Danish Krone</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">British Pound Sterling</option>
+              <option value="HKD">Hong Kong Dollar</option>
+              <option value="HRK">Croatian Kuna</option>
+              <option value="HUF">Hungarian Forint</option>
+              <option value="IDR">Indonesian Rupiah</option>
+              <option value="ILS">Israeli New Shekel</option>
+              <option value="INR">Indian Rupee</option>
+              <option value="ISK">Icelandic Króna</option>
+              <option value="JPY">Japanese Yen</option>
+              <option value="KRW">South Korean Won</option>
+              <option value="MXN">Mexican Peso</option>
+              <option value="MYR">Malaysian Ringgit</option>
+              <option value="NOK">Norwegian Krone</option>
+              <option value="NZD">New Zealand Dollar</option>
+              <option value="PHP">Philippine Peso</option>
+              <option value="PLN">Polish Złoty</option>
+              <option value="RON">Romanian Leu</option>
+              <option value="RUB">Russian Ruble</option>
+              <option value="SEK">Swedish Kronor</option>
+              <option value="SGD">Singapore Dollar</option>
+              <option value="THB">Thai Baht</option>
+              <option value="TRY">Turkish Lira</option>
+              <option value="USD">United States Dollar</option>
+              <option value="ZAR">South African Rand</option>
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <p>{result}</p>
+        </div>
+      </div>
+    );
   }
 }
 
