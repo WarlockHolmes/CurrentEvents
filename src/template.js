@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import "./template.css"
+import './template.css'
+
 
 const SocialMedia = () => {
   return (
     <React.Fragment>
-      <a href="facebook.com"><i class="fab fa-facebook-square"></i></a>
-      <a href="github.com"><i class="fab fa-github-square"></i></a>
-      <a href="linkedin.com"><i class="fab fa-linkedin"></i></a>
+      <a href="facebook.com"><i className="fab fa-facebook-square"></i></a>
+      <a href="github.com"><i className="fab fa-github-square"></i></a>
+      <a href="linkedin.com"><i className="fab fa-linkedin"></i></a>
     </React.Fragment>
   );
 }
@@ -23,27 +24,31 @@ const MoreInfo = () => {
   );
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg border-bottom">
+
       <div className="d-none d-md-flex w-100" id="desktopNav">
         <h2><Link to="/">CurrentEvents</Link></h2>
         <div className="ml-auto">
           <button className="btn btn-outline-secondary">Exchange Rates</button>
-          <button className="btn btn-outline-secondary">Currency Converter</button>
+          <button className="btn btn-outline-secondary" onClick={props.toggleConverter}>Currency Converter</button>
         </div>
       </div>
+
       <div className="d-flex d-md-none" id="mobileNav">
         <h1>Mobile Nav</h1>
       </div>
+
     </nav>
   );
 }
 
 const Template = (props) => {
+
   return (
     <React.Fragment>
-      <Navbar />
+      <Navbar toggleConverter={props.toggleConverter} toggleRates={props.toggleRates}/>
       <div className="container-fluid px-0 w-100 d-none d-md-block" id="desktop">
         <div className="row h-100 w-100">
           <div className="col-12">
