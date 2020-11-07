@@ -1,0 +1,15 @@
+#tablewrap {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+table {
+  border-collapse: separate;
+}
+
+th {
+  background-color: white;
+  border-bottom: 1px solid grey;
+  position: sticky;
+  top: 0;
+}

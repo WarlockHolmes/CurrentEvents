@@ -31,7 +31,7 @@ const Navbar = (props) => {
       <div className="d-none d-md-flex w-100" id="desktopNav">
         <h2><Link to="/">CurrentEvents</Link></h2>
         <div className="ml-auto">
-          <button className="btn btn-outline-secondary">Exchange Rates</button>
+          <button className="btn btn-outline-secondary" onClick={props.toggleRates}>Exchange Rates</button>
           <button className="btn btn-outline-secondary" onClick={props.toggleConverter}>Currency Converter</button>
         </div>
       </div>
@@ -50,10 +50,8 @@ const Template = (props) => {
     <React.Fragment>
       <Navbar toggleConverter={props.toggleConverter} toggleRates={props.toggleRates}/>
       <div className="container-fluid px-0 w-100 d-none d-md-block" id="desktop">
-        <div className="row h-100 w-100">
-          <div className="col-12">
-            {props.children}
-          </div>
+        <div className="row h-100 w-100 mx-2">
+          {props.children}
         </div>
         <footer className="row px-2 mx-0 border-top w-100 align-content-center">
           <div>

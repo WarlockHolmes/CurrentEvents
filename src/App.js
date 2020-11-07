@@ -37,12 +37,8 @@ class App extends React.Component {
       return (
         <React.Fragment>
           <h2>Home</h2>
-          <div id="rates">
-            { showRates && <p>ExchangeRates</p> }
-          </div>
-          <div id="converter">
-            { showConverter && <CurrencyConverter /> }
-          </div>
+          { showRates && <ExchangeRates/> }
+          { showConverter && <CurrencyConverter/> }
         </React.Fragment>
       );
     }
