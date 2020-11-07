@@ -8,23 +8,51 @@ class CurrencyConverter extends React.Component {
     this.state = {
       currency1: 'CAD',
       currency2: 'HKD',
-      result: '',
+      amount: '0',
+      rate: '',
       error: '',
     };
     this.newCurrency1 = this.newCurrency1.bind(this);
     this.newCurrency2 = this.newCurrency2.bind(this);
-    this.update = this.update.bind(this);
+    this.updateRate = this.updateRate.bind(this);
+    this.amountChange = this.amountChange.bind(this);
   }
 
+  amountChange(event) {
+    let update = () => {
+      return new Promise ((resolve, reject) => {
+        resolve(this.setState({ amount: event.target.value }));
+      });
+    }
+    update().then(this.updateRate);
+  }
 
-  update() {
+  newCurrency1(event) {
+    let update = () => {
+      return new Promise ((resolve, reject) => {
+        resolve(this.setState({ currency1: event.target.value }));
+      });
+    }
+    update().then(this.updateRate);
+  }
+
+  newCurrency2(event) {
+    let update = () => {
+      return new Promise ((resolve, reject) => {
+        resolve(this.setState({ currency2: event.target.value }));
+      });
+    }
+    update().then(this.updateRate);
+  }
+
+  updateRate() {
     const { currency1, currency2 } = this.state;
     fetch(`https://alt-exchange-rate.herokuapp.com/latest?base=${currency1}&symbols=${currency2}`)
     .then(checkStatus)
     .then(json)
     .then((data) => {
       console.log(data.rates[currency2]);
-      //this.setState({ result: data });
+      this.setState({ rate: data.rates[currency2] });
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -32,32 +60,15 @@ class CurrencyConverter extends React.Component {
     })
   }
 
-  newCurrency1(event) {
-    let updateCurrency = () => {
-      return new Promise ((resolve, reject) => {
-        resolve(this.setState({ currency1: event.target.value }));
-      });
-    }
-    updateCurrency().then(this.update);
-  }
-
-  newCurrency2(event) {
-    let updateCurrency = () => {
-      return new Promise ((resolve, reject) => {
-        resolve(this.setState({ currency2: event.target.value }));
-      });
-    }
-    updateCurrency().then(this.update);
-  }
-
-
-
   render() {
-    const { currency1, currency2, result } = this.state;
+    const { currency1, currency2, rate, amount } = this.state;
+    let res = amount*rate;
+    const result = res.toFixed(2);
     return (
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-4" id="converter">
+            <label>From:
             <select id="currency1" value={currency1} onChange={this.newCurrency1}>
               <option value="AUD">Australian Dollar</option>
               <option value="BGN">Bulgarian Lev</option>
@@ -93,6 +104,9 @@ class CurrencyConverter extends React.Component {
               <option value="USD">United States Dollar</option>
               <option value="ZAR">South African Rand</option>
             </select>
+            </label>
+            <input type="number" id="amount" value={amount} onChange={this.amountChange}/>
+            <label>To:
             <select id="currency2" value={currency2} onChange={this.newCurrency2}>
               <option value="AUD">Australian Dollar</option>
               <option value="BGN">Bulgarian Lev</option>
@@ -128,10 +142,11 @@ class CurrencyConverter extends React.Component {
               <option value="USD">United States Dollar</option>
               <option value="ZAR">South African Rand</option>
             </select>
+            </label>
           </div>
         </div>
         <div className="row">
-          <p>{result}</p>
+          <p>= {result}</p>
         </div>
       </div>
     );
