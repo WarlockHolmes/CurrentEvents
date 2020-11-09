@@ -35,11 +35,10 @@ class App extends React.Component {
     const { showRates, showConverter } = this.state;
     const Home = () => {
       return (
-        <React.Fragment>
-          <h2>Home</h2>
+        <div className="mx-auto row my-3 justify-content-center align-content-center">
           { showRates && <ExchangeRates/> }
           { showConverter && <CurrencyConverter/> }
-        </React.Fragment>
+        </div>
       );
     }
     return (

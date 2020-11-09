@@ -1,5 +1,5 @@
 #tablewrap {
-  max-height: 80vh;
+  max-height: 75vh;
   overflow-y: scroll;
 }
 
@@ -12,4 +12,8 @@ th {
   border-bottom: 1px solid grey;
   position: sticky;
   top: 0;
+}
+
+#rates {
+  min-width: 300px;
 }

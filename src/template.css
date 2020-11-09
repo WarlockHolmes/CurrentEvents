@@ -1,4 +1,37 @@
+/* Nav */
+ nav {
+   background: linear-gradient(to right, #1EA41E 0%, #FFFFFF 100%);
+ }
+
+ nav a {
+   color: #c0c0c0;
+ }
+
+ nav a:hover {
+   color: #808080;
+   text-decoration: none;
+ }
+
+/* Content */
 
 #desktop {
   height: 85vh;
+}
+
+/* Footer (Desktop) */
+
+footer {
+  background-color: #808080;
+}
+
+footer li a, footer li a:hover {
+  color: white;
+}
+
+footer i{
+  color: white;
+}
+
+footer i:hover{
+  color: #c0c0c0;
 }

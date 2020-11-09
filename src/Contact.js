@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
-    <React.Fragment>
+    <div className="mx-auto">
       <p>Contact</p>
-    </React.Fragment>
+    </div>
   );
 }
 

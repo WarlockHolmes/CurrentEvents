@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <React.Fragment>
+    <div className="mx-auto">
       <p>Abouts</p>
-    </React.Fragment>
+    </div>
   );
 }
 
