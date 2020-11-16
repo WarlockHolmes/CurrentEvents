@@ -114,6 +114,7 @@ class ExchangeRates extends React.Component {
 
     return (
       <div className="col-md-6 col-12" id="rates">
+        <h3 className="text-center font-weight-light">Exchange Rates</h3>
         <div className="pt-3 row align-content-center justify-content-around">
           <BaseSelect value={base} change={this.updateBase}/>
         </div>
