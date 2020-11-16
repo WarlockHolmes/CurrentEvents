@@ -76,6 +76,7 @@ class ExchangeRates extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      start: true,
       base: 'CAD',
       rates: {},
       error: '',
@@ -94,11 +95,12 @@ class ExchangeRates extends React.Component {
   }
 
   updateRates(){
-    const {base} = this.state;
+    const {base, start} = this.state;
     fetch(`https://alt-exchange-rate.herokuapp.com/latest?base=${base}`)
     .then(checkStatus)
     .then(json)
     .then((data) => {
+      if (start) {this.setState({start: false})}
       this.setState({ rates: data.rates });
     })
     .catch((error) => {
@@ -108,12 +110,16 @@ class ExchangeRates extends React.Component {
   }
 
   render() {
-    const {base, rates} = this.state;
+    const {base, rates, start} = this.state;
 
     return (
-      <div className="col-6" id="rates">
-        <BaseSelect value={base} change={this.updateBase}/>
-        <Table rates={rates}/>
+      <div className="col-md-6 col-12" id="rates">
+        <div className="pt-3 row align-content-center justify-content-around">
+          <BaseSelect value={base} change={this.updateBase}/>
+        </div>
+        <div>
+          { !start && <Table rates={rates}/> }
+        </div>
       </div>
     )
   }

@@ -1,4 +1,12 @@
+* {
+  font-family: "Gill Sans", sans-serif;
+}
+
 /* Nav */
+
+nav h2, h2 a {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
 
 .menuClosed {
   background: linear-gradient(to right, #1EA41E, #FFFFFF);
@@ -8,14 +16,14 @@
 .menuOpen {
   background: linear-gradient(to bottom, #1EA41E, #FFFFFF);
   border-bottom: none;
-  padding-bottom: 4em;
+  padding-bottom: 7em;
 }
 
 .menuOpen li a {
   font-size: 1.5em;
 }
 
- nav a {
+ nav a, nav h2 {
    color: white;
  }
 
@@ -24,10 +32,35 @@
    text-decoration: none;
  }
 
+ #mobileNav .navbar-toggler {
+   border: 1px solid #555;
+ }
+
 /* Content */
+
+#content {
+  background-color: #F5F5F5;
+}
+
+#mobile #content {
+  background-color: white;
+}
 
 #desktop {
   height: 85vh;
+}
+
+#mobile {
+  height: 90vh;
+}
+
+#defaultText {
+  font-size: 32px;
+  opacity: 0.4;
+}
+
+#mobile #defaultText {
+  font-size: 22px;
 }
 
 /* Footer (Desktop) */
@@ -38,7 +71,6 @@ footer {
 
 footer li a, footer li a:hover {
   color: white;
-  font-weight: bold;
 }
 
 footer i{

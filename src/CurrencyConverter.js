@@ -1,6 +1,7 @@
 import React from 'react';
 import { json, checkStatus } from './utils';
 
+import './CurrencyConverter.css';
 
 const CurrencySelect = (props) => {
   return (
@@ -107,7 +108,7 @@ class CurrencyConverter extends React.Component {
     let res = amount*rate;
     const result = res.toFixed(2);
     return (
-      <div className="col-6" id="converter">
+      <div className="col-6 my-auto" id="converter">
         <CurrencySelect label='From:' slot={currency1} change={this.newCurrency1} id='currency1'/>
         <input type="number" id="amount" value={amount} onChange={this.amountChange}/>
         <CurrencySelect label='To:' slot={currency2}  change={this.newCurrency2} id='currency2'/>

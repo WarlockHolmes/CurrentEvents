@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Template from './template';
@@ -37,7 +36,9 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
+
   }
+
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
@@ -56,23 +57,24 @@ class App extends React.Component {
   }
 
   toggleConverter() {
-    if(window.location.pathname === '/') {
-      this.setState({ showConverter: !this.state.showConverter });
-    }
+    this.setState({ showConverter: !this.state.showConverter });
   }
 
   toggleRates() {
-    if(window.location.pathname === '/') {
-      this.setState({ showRates: !this.state.showRates });
-    }
+    this.setState({ showRates: !this.state.showRates });
   }
 
   handleResize() {
     let history = createBrowserHistory();
     let path = window.location.pathname;
     let size = window.innerWidth;
+
     this.setState({width: size});
+
+    if (this.state.showRates) {this.toggleRates()};
+    if (this.state.showConverter) {this.toggleConverter()};
     if (this.state.menu) {this.toggleMenu()};
+
     if ((path === '/converter' || path === '/rates') && (size >= 768)) {
       history.push('/');
       window.location.reload(false);
@@ -83,9 +85,33 @@ class App extends React.Component {
   render() {
     const { showRates, showConverter, home, menu, width } = this.state;
 
+    const random = (max) => {
+      return Math.floor(Math.random() * Math.floor(max));
+    };
+
+    const randomText = (props) => {
+      const num = random(3);
+      if (props.revisit) {
+      switch (num) {
+        case 1: return 'Hello! What can I help you with?';
+        case 2: return 'Hi, what can I do for you?';
+        case 3: return 'Hey, what brings you by?';
+        default: return 'What\'s on your mind?';
+      }
+      } else {
+        return 'Anything else?';
+      };
+    }
+
+    const DefaultText = (props) => {
+      return <p id="defaultText">{randomText(props)}</p>;
+    }
+
+
     const Home = () => {
       return (
-        <div className="mx-auto row my-3 justify-content-center align-content-center">
+        <div className="h-100 w-100 mx-auto row justify-content-center align-content-center">
+          { !showRates && !showConverter && <DefaultText revisit={home} /> }
           {  showRates && <ExchangeRates/> }
           { showConverter && <CurrencyConverter/> }
         </div>
