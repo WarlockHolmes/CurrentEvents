@@ -1,6 +1,7 @@
 import React from 'react';
 import { json, checkStatus } from './utils';
 
+
 const CurrencySelect = (props) => {
   return (
     <label>{props.label}

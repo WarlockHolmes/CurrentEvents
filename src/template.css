@@ -1,14 +1,26 @@
 /* Nav */
- nav {
-   background: linear-gradient(to right, #1EA41E 0%, #FFFFFF 100%);
- }
+
+.menuClosed {
+  background: linear-gradient(to right, #1EA41E, #FFFFFF);
+  border-bottom: 1px grey solid;
+}
+
+.menuOpen {
+  background: linear-gradient(to bottom, #1EA41E, #FFFFFF);
+  border-bottom: none;
+  padding-bottom: 4em;
+}
+
+.menuOpen li a {
+  font-size: 1.5em;
+}
 
  nav a {
-   color: #c0c0c0;
+   color: white;
  }
 
  nav a:hover {
-   color: #808080;
+   color: #c0c0c0;
    text-decoration: none;
  }
 
@@ -26,6 +38,7 @@ footer {
 
 footer li a, footer li a:hover {
   color: white;
+  font-weight: bold;
 }
 
 footer i{
