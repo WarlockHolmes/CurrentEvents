@@ -1,8 +1,6 @@
 import React from 'react';
 import { json, checkStatus } from './utils';
 
-import './CurrencyConverter.css';
-
 const CurrencySelect = (props) => {
   return (
     <label>{props.label}

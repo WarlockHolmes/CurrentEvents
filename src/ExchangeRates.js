@@ -1,6 +1,5 @@
 import React from 'react';
 import { json, checkStatus } from './utils';
-import './ExchangeRates.css';
 
 const Table = (props) => {
   const content = Object.entries(props.rates).map(([currency, rate]) => {

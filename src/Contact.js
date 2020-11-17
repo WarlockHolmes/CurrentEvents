@@ -12,7 +12,7 @@ const Contact = () => {
         </div>
         <div className="col-md-8 col-9">
           <p>1-(XXX)-555-1234</p>
-          <p><a target="_blank" href="mailto:grau.morgan@gmail.com">grau.morgan@gmail.com</a></p>
+          <p><a rel="noopener noreferrer" target="_blank" href="mailto:grau.morgan@gmail.com">grau.morgan@gmail.com</a></p>
           <p className="text-center">#1234, 123 Street NW<br/>Edmonton, AB, Canada<br/>A1A 1A1</p>
         </div>
       </div>
