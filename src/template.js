@@ -10,7 +10,7 @@ const SocialMedia = (props) => {
   const iconSpacing = () => {
     switch(props.size) {
       case '2x': return 'mx-3';
-      case 'lg': return 'mx-1';
+      case 'lg': return 'mx-2';
       default: return 'mx-1';
     }
   }

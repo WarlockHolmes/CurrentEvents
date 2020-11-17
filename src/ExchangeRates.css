@@ -24,15 +24,6 @@
   background-color: white;
 }
 
-#mobile #tablewrap {
-  max-height: 65vh;
-}
-
-#mobile h3 {
-  margin-top: 1.25em;
-  margin-bottom: 1.5em;
-}
-
 table {
   border-collapse: separate;
 }
@@ -50,4 +41,15 @@ th {
 td {
   text-align: center;
 
+}
+
+/* Mobile */
+
+#mobile #tablewrap {
+  max-height: 65vh;
+}
+
+#mobile h3 {
+  margin-top: 1.25em;
+  margin-bottom: 1.5em;
 }

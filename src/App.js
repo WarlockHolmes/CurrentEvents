@@ -25,6 +25,7 @@ class App extends React.Component {
       home: true,
       menu: false,
       width: window.innerWidth,
+      revisit: false,
     }
     this.toggleConverter = this.toggleConverter.bind(this);
     this.toggleRates = this.toggleRates.bind(this);
@@ -32,6 +33,7 @@ class App extends React.Component {
     this.comeHome = this.comeHome.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.changeDefaultText = this.changeDefaultText.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +41,9 @@ class App extends React.Component {
 
   }
 
+  changeDefaultText() {
+    this.setState({ revisit: true });
+  }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
@@ -50,6 +55,7 @@ class App extends React.Component {
 
   comeHome() {
     this.setState({ home: true });
+    this.changeDefaultText();
   }
 
   toggleMenu() {
@@ -58,10 +64,12 @@ class App extends React.Component {
 
   toggleConverter() {
     this.setState({ showConverter: !this.state.showConverter });
+    this.changeDefaultText();
   }
 
   toggleRates() {
     this.setState({ showRates: !this.state.showRates });
+    this.changeDefaultText();
   }
 
   handleResize() {
@@ -83,7 +91,7 @@ class App extends React.Component {
 
 
   render() {
-    const { showRates, showConverter, home, menu, width } = this.state;
+    const { showRates, showConverter, home, menu, width, revisit } = this.state;
 
     const random = (max) => {
       return Math.floor(Math.random() * Math.floor(max));
@@ -91,7 +99,7 @@ class App extends React.Component {
 
     const randomText = (props) => {
       const num = random(3);
-      if (props.revisit) {
+      if (!props.revisit) {
       switch (num) {
         case 1: return 'Hello! What can I help you with?';
         case 2: return 'Hi, what can I do for you?';
@@ -111,7 +119,7 @@ class App extends React.Component {
     const Home = () => {
       return (
         <div className="h-100 w-100 mx-auto row justify-content-center align-content-center">
-          { !showRates && !showConverter && <DefaultText revisit={home} /> }
+          { !showRates && !showConverter && <DefaultText revisit={revisit} /> }
           {  showRates && <ExchangeRates/> }
           { showConverter && <CurrencyConverter/> }
         </div>
