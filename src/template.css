@@ -16,18 +16,50 @@ nav .btn {
    color: white;
  }
 
- nav a:hover {
+ nav a:hover  {
    color: #c0c0c0;
    text-decoration: none;
  }
 
-
-
-/* Desktop */
+/* Content */
 
 #content {
   background-color: #F5F5F5;
+  font-size: 18px;
 }
+
+#content h2 {
+  text-decoration: underline;
+  font-weight: lighter;
+}
+
+#content a {
+  color: #1EA41E;
+}
+
+#content a:hover {
+  color: black;
+}
+
+#about p {
+  padding-left: 2em;
+  padding-right: 2em;
+  text-indent: 1.25em;
+}
+
+#contact a:hover {
+  color: #1EA41E;
+}
+
+#contact .col-4 {
+  text-align: right;
+}
+
+#contact .col-8 {
+  font-weight: lighter;
+}
+
+/* Desktop */
 
 #desktop {
   height: 80vh;
@@ -38,7 +70,9 @@ nav .btn {
   opacity: 0.4;
 }
 
-/* Footer (Desktop) */
+#desktop #contact {
+  min-width: 300px;
+}
 
 footer {
   height: 11vh;
@@ -89,4 +123,9 @@ footer i:hover{
 
 #mobile #content {
   background-color: white;
+}
+
+#mobile #about p {
+  font-size: 16px;
+  margin-bottom: 1.25em;
 }

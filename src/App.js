@@ -56,6 +56,7 @@ class App extends React.Component {
   comeHome() {
     this.setState({ home: true });
     this.changeDefaultText();
+    this.setState({ showSocialMedia: true});
   }
 
   toggleMenu() {
@@ -127,7 +128,7 @@ class App extends React.Component {
     }
     return (
       <Router>
-        <Template home={home} menu={menu} notHome={this.notHome} comeHome={this.comeHome} toggleConverter={this.toggleConverter} toggleRates={this.toggleRates} toggleMenu={this.toggleMenu} width={width}>
+        <Template home={home} menu={menu} notHome={this.notHome} comeHome={this.comeHome} toggleConverter={this.toggleConverter} toggleRates={this.toggleRates} toggleMenu={this.toggleMenu} width={width} >
           <Switch>
             <Route path="/" exact render={Home}/>
             <Route path="/converter" component={CurrencyConverter}/>

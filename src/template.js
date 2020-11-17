@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+
 import './template.css'
 
 const SocialMedia = (props) => {
   const icon = (brand) => `fab fa-${brand} fa-${props.size}`;
-  const facebook = icon('facebook-square');
+  const email = `fas fa-at fa-${props.size}`;
   const github = icon('github-square');
   const linkedin = icon('linkedin');
   const iconSpacing = () => {
     switch(props.size) {
       case '2x': return 'mx-3';
       case 'lg': return 'mx-2';
-      default: return 'mx-1';
+      default: return 'mx-2';
     }
   }
   return (
     <React.Fragment>
-      <a href="https://www.facebook.com" className={iconSpacing()}><i className={facebook}></i></a>
-      <a href="https://www.github.com" className={iconSpacing()}><i className={github}></i></a>
-      <a href="https://www.linkedin.com" className={iconSpacing()}><i className={linkedin}></i></a>
+      <a href="https://www.github.com/WarlockHolmes" target="_blank" className={iconSpacing()}><i className={github}></i></a>
+      <a href="mailto:grau.morgan@gmail.com" target="_blank" className={iconSpacing()}><i className={email}></i></a>
+      <a href="https://www.linkedin.com/in/morgan-grau-15069955" target="_blank" className={iconSpacing()}><i className={linkedin}></i></a>
     </React.Fragment>
   );
 }
@@ -29,7 +30,7 @@ const MoreInfo = (props) => {
       <React.Fragment>
         <ul className='d-inline-block list-inline mx-auto my-2'>
           <li className="list-inline-item"><Link to="/about" onClick={props.notHome}>About</Link></li>
-          <li className="list-inline-item ml-5"><Link to="/contact" onClick={props.notHome}>Contact</Link></li>
+          <li className="list-inline-item ml-5"><Link to="/contact" onClick={props.visitContact}>Contact</Link></li>
         </ul>
       </React.Fragment>
     );} else {
