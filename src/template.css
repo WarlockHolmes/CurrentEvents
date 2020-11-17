@@ -1,4 +1,92 @@
+* {
+  font-family: "Gill Sans", sans-serif;
+}
+
+/* Nav */
+
+nav h2, h2 a {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+nav .btn {
+  font-size: 20px;
+}
+
+ nav a, nav h2 {
+   color: white;
+ }
+
+ nav a:hover {
+   color: #c0c0c0;
+   text-decoration: none;
+ }
+
+
+
+/* Desktop */
+
+#content {
+  background-color: #F5F5F5;
+}
 
 #desktop {
-  height: 85vh;
+  height: 80vh;
+}
+
+#defaultText {
+  font-size: 32px;
+  opacity: 0.4;
+}
+
+/* Footer (Desktop) */
+
+footer {
+  height: 11vh;
+  background-color: #808080;
+  font-size: 18px;
+}
+
+footer li a, footer li a:hover {
+  color: white;
+}
+
+footer i{
+  color: white;
+}
+
+footer i:hover{
+  color: #c0c0c0;
+}
+
+/* Mobile */
+
+.menuClosed {
+  background: linear-gradient(to right, #1EA41E, #FFFFFF);
+  border-bottom: 1px grey solid;
+}
+
+.menuOpen {
+  background: linear-gradient(to bottom, #1EA41E, #FFFFFF);
+  border-bottom: none;
+  padding-bottom: 7em;
+}
+
+.menuOpen li a {
+  font-size: 1.5em;
+}
+
+#mobile {
+  height: 90vh;
+}
+
+#mobile #defaultText {
+  font-size: 22px;
+}
+
+#mobileNav .navbar-toggler {
+  border: 1px solid #555;
+}
+
+#mobile #content {
+  background-color: white;
 }

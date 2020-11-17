@@ -1,10 +1,12 @@
 import React from 'react';
 import { json, checkStatus } from './utils';
 
+import './CurrencyConverter.css';
+
 const CurrencySelect = (props) => {
   return (
     <label>{props.label}
-    <select id="currency1" value={props.slot} onChange={props.change}>
+    <select id={props.id} value={props.slot} onChange={props.change}>
       <option value="AUD">Australian Dollar</option>
       <option value="BGN">Bulgarian Lev</option>
       <option value="BRL">Brazilian Real</option>
@@ -106,12 +108,19 @@ class CurrencyConverter extends React.Component {
     let res = amount*rate;
     const result = res.toFixed(2);
     return (
-      <div className="col-6" id="converter">
-        <CurrencySelect label='From:' slot={currency1} change={this.newCurrency1} id='currency1'/>
-        <input type="number" id="amount" value={amount} onChange={this.amountChange}/>
-        <CurrencySelect label='To:' slot={currency2}  change={this.newCurrency2} id='currency2'/>
+      <div className="col-md-6 col-12 my-auto" id="converter">
+        <h3 className="text-center font-weight-light">Currency Converter</h3>
+        <div className="row justify-content-center">
+          <CurrencySelect label='From:' slot={currency1} change={this.newCurrency1} id='currency1'/>
+        </div>
+        <div className="row justify-content-center">
+          <input type="number" id="amount" value={amount} onChange={this.amountChange}/>
+        </div>
+        <div className="row justify-content-center">
+          <CurrencySelect label='To:' slot={currency2}  change={this.newCurrency2} id='currency2'/>
+        </div>
         <div id="result">
-          <p>= {result}</p>
+          <p className="text-center">= {result}</p>
         </div>
       </div>
     );
