@@ -13,7 +13,7 @@ import { createBrowserHistory } from 'history';
 
 
 const NotFound = () => {
-  return <h2>404 Not Found</h2>;
+  return <h2 className="text-center mx-auto">404 Not Found</h2>;
 }
 
 class App extends React.Component {
@@ -32,6 +32,7 @@ class App extends React.Component {
     this.notHome = this.notHome.bind(this);
     this.comeHome = this.comeHome.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.menuClick = this.menuClick.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.changeDefaultText = this.changeDefaultText.bind(this);
   }
@@ -41,12 +42,12 @@ class App extends React.Component {
 
   }
 
-  changeDefaultText() {
-    this.setState({ revisit: true });
-  }
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
+  }
+
+  changeDefaultText() {
+    this.setState({ revisit: true });
   }
 
   notHome() {
@@ -60,6 +61,11 @@ class App extends React.Component {
 
   toggleMenu() {
     this.setState({ menu: !this.state.menu })
+  }
+
+  menuClick() {
+    this.notHome();
+    this.toggleMenu();
   }
 
   toggleConverter() {
@@ -127,7 +133,7 @@ class App extends React.Component {
     }
     return (
       <Router>
-        <Template home={home} menu={menu} notHome={this.notHome} comeHome={this.comeHome} toggleConverter={this.toggleConverter} toggleRates={this.toggleRates} toggleMenu={this.toggleMenu} width={width}>
+        <Template home={home} menu={menu} notHome={this.notHome} comeHome={this.comeHome} toggleConverter={this.toggleConverter} toggleRates={this.toggleRates} toggleMenu={this.toggleMenu} menuClick={this.menuClick} width={width} >
           <Switch>
             <Route path="/" exact render={Home}/>
             <Route path="/converter" component={CurrencyConverter}/>

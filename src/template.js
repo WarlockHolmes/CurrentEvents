@@ -1,89 +1,92 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+
 import './template.css'
 
-const SocialMedia = (props) => {
-  const icon = (brand) => `fab fa-${brand} fa-${props.size}`;
-  const facebook = icon('facebook-square');
-  const github = icon('github-square');
-  const linkedin = icon('linkedin');
-  const iconSpacing = () => {
-    switch(props.size) {
-      case '2x': return 'mx-3';
-      case 'lg': return 'mx-2';
-      default: return 'mx-1';
-    }
-  }
-  return (
-    <React.Fragment>
-      <a href="https://www.facebook.com" className={iconSpacing()}><i className={facebook}></i></a>
-      <a href="https://www.github.com" className={iconSpacing()}><i className={github}></i></a>
-      <a href="https://www.linkedin.com" className={iconSpacing()}><i className={linkedin}></i></a>
-    </React.Fragment>
-  );
-}
+const Template = (props) => {
 
-const MoreInfo = (props) => {
-  if (!props.menu) {
+  const SocialMedia = (props) => {
+    const icon = (brand) => `fab fa-${brand} fa-${props.size}`;
+    const email = `fas fa-at fa-${props.size}`;
+    const github = icon('github-square');
+    const linkedin = icon('linkedin');
+    const iconSpacing = () => {
+      switch(props.size) {
+        case '2x': return 'mx-3';
+        case 'lg': return 'mx-2';
+        default: return 'mx-2';
+      }
+    }
     return (
       <React.Fragment>
-        <ul className='d-inline-block list-inline mx-auto my-2'>
-          <li className="list-inline-item"><Link to="/about" onClick={props.notHome}>About</Link></li>
-          <li className="list-inline-item ml-5"><Link to="/contact" onClick={props.notHome}>Contact</Link></li>
-        </ul>
+        <a href="https://www.github.com/WarlockHolmes" rel="noopener noreferrer" target="_blank" className={iconSpacing()}><i className={github}></i></a>
+        <a href="mailto:grau.morgan@gmail.com" rel="noopener noreferrer" target="_blank" className={iconSpacing()}><i className={email}></i></a>
+        <a href="https://www.linkedin.com/in/morgan-grau-15069955" rel="noopener noreferrer" target="_blank" className={iconSpacing()}><i className={linkedin}></i></a>
       </React.Fragment>
-    );} else {
-    return(
-      <React.Fragment>
-        <li className="nav-item mx-auto my-2"><Link to="/about" onClick={props.notHome}>About</Link></li>
-        <li className="nav-item mx-auto my-2"><Link to="/contact" onClick={props.notHome}>Contact</Link></li>
-      </React.Fragment>
-  );}
-}
-
-const Navbar = (props) => {
-  function navStyle() {
-    return (props.menu && props.width < 768) ? 'menuOpen position-fixed' : 'menuClosed';
+    );
   }
-  return (
-    <nav className={`navbar navbar-expand-lg navbar-light ${navStyle()}`}>
 
-      <div className="d-none d-md-flex w-100" id="desktopNav">
-        <h2 className="font-weight-bold"><Link to="/" onClick={props.comeHome}>CurrentEvents</Link></h2>
-        {props.home && <div className="ml-auto">
-          <button className="btn btn-outline-secondary mr-3" onClick={props.toggleRates}>Exchange Rates</button>
-          <button className="btn btn-outline-secondary" onClick={props.toggleConverter}>Currency Converter</button>
-        </div>}
-      </div>
+  const MoreInfo = () => {
+    if (!props.menu) {
+      return (
+        <React.Fragment>
+          <ul className='d-inline-block list-inline mx-auto my-2'>
+            <li className="list-inline-item"><Link to="/about" onClick={props.notHome}>About</Link></li>
+            <li className="list-inline-item ml-5"><Link to="/contact" onClick={props.visitContact}>Contact</Link></li>
+          </ul>
+        </React.Fragment>
+      );} else {
+      return(
+        <React.Fragment>
+          <li className="nav-item mx-auto my-2"><Link to="/about" onClick={props.notHome}>About</Link></li>
+          <li className="nav-item mx-auto my-2"><Link to="/contact" onClick={props.notHome}>Contact</Link></li>
+        </React.Fragment>
+    );}
+  }
 
-      <div className="d-flex d-md-none w-100" id="mobileNav">
-        <h2 className="font-weight-bold">CurrentEvents</h2>
-        <div className="ml-auto">
-          <button className="navbar-toggler" onClick={props.toggleMenu}><span className="navbar-toggler-icon"></span></button>
+  const Navbar = () => {
+    function navStyle() {
+      return (props.menu && props.width < 768) ? 'menuOpen' : 'menuClosed';
+    }
+
+    return (
+      <nav className={`navbar navbar-expand-lg navbar-light ${navStyle()}`}>
+
+        <div className="d-none d-md-flex w-100" id="desktopNav">
+          <h2 className="font-weight-bold"><Link to="/" onClick={props.comeHome}>CurrentEvents</Link></h2>
+          {props.home && <div className="ml-auto">
+            <button className="btn btn-outline-secondary mr-3" onClick={props.toggleRates}>Exchange Rates</button>
+            <button className="btn btn-outline-secondary" onClick={props.toggleConverter}>Currency Converter</button>
+          </div>}
         </div>
-      </div>
 
-      { props.menu &&
-      <ul className="d-md-none navbar-nav mx-auto my-2">
-        <li className="nav-item mx-auto my-2">
-          <Link to="/converter" onClick={props.notHome}>Currency Converter</Link>
-        </li>
-        <li className="nav-item mx-auto my-2">
-          <Link to="/rates" onClick={props.notHome}>Exchange Rates</Link>
-        </li>
-        <MoreInfo menu={props.menu} notHome={props.notHome}/>
-        <li className="nav-item mx-auto my-2" onClick={props.notHome}>
-          <SocialMedia size="2x"/>
-        </li>
-      </ul>}
-    </nav>
-  );
-}
+        <div className="d-flex d-md-none w-100" id="mobileNav">
+          <h2 className="font-weight-bold">CurrentEvents</h2>
+          <div className="ml-auto">
+            <button className="navbar-toggler" onClick={props.toggleMenu}><span className="navbar-toggler-icon"></span></button>
+          </div>
+        </div>
 
-const Template = (props) => {
+        { props.menu &&
+        <ul className="d-md-none navbar-nav mx-auto my-2">
+          <li className="nav-item mx-auto my-2">
+            <Link to="/converter" onClick={props.menuClick}>Currency Converter</Link>
+          </li>
+          <li className="nav-item mx-auto my-2">
+            <Link to="/rates" onClick={props.menuClick}>Exchange Rates</Link>
+          </li>
+          <MoreInfo/>
+          <li className="nav-item mx-auto my-2" onClick={props.menuClick}>
+            <SocialMedia size="2x"/>
+          </li>
+        </ul>}
+      </nav>
+    );
+  }
+
   return (
     <React.Fragment>
-      <Navbar home={props.home} menu={props.menu} comeHome={props.comeHome} toggleConverter={props.toggleConverter} toggleRates={props.toggleRates} toggleMenu={props.toggleMenu} width={props.width}/>
+      <Navbar />
       {/*Desktop Content*/}
       <div className="container-fluid px-0 w-100 d-none d-md-block" id="desktop">
         <div className="row mx-0 h-100 w-100" id="content">
@@ -97,7 +100,7 @@ const Template = (props) => {
       </div>
       {/*Mobile Content*/}
       <div className='container-fluid d-block d-md-none' id="mobile">
-        <div className="row mx-auto h-100 w-100" id="content">
+        <div className="row mx-auto w-100" id="content">
           {!props.menu && props.children}
         </div>
       </div>
