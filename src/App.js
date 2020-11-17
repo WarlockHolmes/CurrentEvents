@@ -11,6 +11,16 @@ import './App.css';
 
 import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory();
+
+const refreshPage = () => {
+  window.location.reload(false);
+}
+
+const redirectTo = (page) => {
+  history.push(page);
+  refreshPage();
+}
 
 const NotFound = () => {
   return <h2 className="text-center mx-auto">404 Not Found</h2>;
@@ -25,8 +35,11 @@ class App extends React.Component {
       home: true,
       menu: false,
       width: window.innerWidth,
+      path: window.location.pathname,
       revisit: false,
     }
+    this.updatePath = this.updatePath.bind(this);
+    this.updateViewWidth = this.updateViewWidth.bind(this);
     this.toggleConverter = this.toggleConverter.bind(this);
     this.toggleRates = this.toggleRates.bind(this);
     this.notHome = this.notHome.bind(this);
@@ -39,7 +52,6 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
-
   }
 
   componentWillUnmount() {
@@ -78,20 +90,22 @@ class App extends React.Component {
     this.changeDefaultText();
   }
 
+  updatePath() {
+    this.setState({path: window.location.pathname});
+  }
+
+  updateViewWidth() {
+    this.setState({width: window.innerWidth});
+  }
+
   handleResize() {
-    let history = createBrowserHistory();
-    let path = window.location.pathname;
-    let size = window.innerWidth;
-
-    this.setState({width: size});
-
-    if (this.state.showRates) {this.toggleRates()};
-    if (this.state.showConverter) {this.toggleConverter()};
+    this.updateViewWidth();
+    const { width, path } = this.state;
     if (this.state.menu) {this.toggleMenu()};
-
-    if ((path === '/converter' || path === '/rates') && (size >= 768)) {
-      history.push('/');
-      window.location.reload(false);
+    if ((path === '/converter' || path === '/rates') && (width >= 768)) {
+      redirectTo('/');
+    } else if (path === '/') {
+      redirectTo('/rates');
     }
   }
 
