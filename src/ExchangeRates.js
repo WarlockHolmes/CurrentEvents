@@ -84,6 +84,10 @@ class ExchangeRates extends React.Component {
     this.updateRates = this.updateRates.bind(this);
   }
 
+  componentDidMount () {
+      this.updateRates();
+  }
+
   updateBase(event){
     let update = () => {
       return new Promise ((resolve, reject) => {
