@@ -103,10 +103,14 @@ footer i:hover{
   font-size: 20px;
 }
 
+#converter label {
+  margin-bottom: 0;
+}
+
 #converter select {
-  margin-top: 1.5em;
+  margin-top: 1em;
   margin-left: 1.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 #currency1 {
@@ -119,6 +123,10 @@ footer i:hover{
 
 h3 {
   text-decoration: underline;
+}
+
+canvas {
+  max-height: 300px;
 }
 
 /* Exchange Rates */

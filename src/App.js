@@ -38,7 +38,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let history = createBrowserHistory();
+    let path = window.location.pathname;
+    let size = window.innerWidth;
     window.addEventListener('resize', this.handleResize);
+    if ((path === '/') && (size < 768)) { 
+      history.push('/rates');
+      window.location.reload(false);
+    }
 
   }
 
@@ -85,13 +92,19 @@ class App extends React.Component {
 
     this.setState({width: size});
 
-    if (this.state.showRates) {this.toggleRates()};
-    if (this.state.showConverter) {this.toggleConverter()};
-    if (this.state.menu) {this.toggleMenu()};
-
-    if ((path === '/converter' || path === '/rates') && (size >= 768)) {
-      history.push('/');
-      window.location.reload(false);
+    if (size >= 768) {
+      if (this.state.menu) {this.toggleMenu()};
+      if (path === '/converter' || path === '/rates') {
+        history.push('/');
+        window.location.reload(false);
+      }
+    } else {
+      if (this.state.showRates) {this.toggleRates()};
+      if (this.state.showConverter) {this.toggleConverter()};
+      if (path === '/'){
+        history.push('/rates');
+        window.location.reload(false);
+      }
     }
   }
 
