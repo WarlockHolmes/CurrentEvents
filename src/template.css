@@ -198,7 +198,7 @@ td {
 }
 
 #mobile #defaultText {
-  font-size: 22px;
+  opacity: 0;
 }
 
 #mobileNav .navbar-toggler {
@@ -220,7 +220,7 @@ td {
 
 #mobile h3 {
   margin-top: 1.25em;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 #mobile #converter {
