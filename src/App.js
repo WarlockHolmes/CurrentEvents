@@ -51,10 +51,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let path = window.location.pathname;
-    let size = window.innerWidth;
+    const { path, width } = this.state;
     window.addEventListener('resize', this.handleResize);
-    if ((path === '/') && (size < 768)) {
+    if ((path === '/') && (width < 768)) {
       redirectTo('rates');
     }
 
